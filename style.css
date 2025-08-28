@@ -70,45 +70,26 @@
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50% { transform: translateX(-50%) translateY(-5px); }
   }
-  
-
   .machine {
     position: absolute;
-    width: 120px;
-    height: 180px;
-    background: linear-gradient(to bottom, #555, #222);
-    bottom: 10%;
-    z-index: 1;
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px #222, 0 0 20px #666;
+    bottom: 10%; 
+    width: 200px;
+    z-index: 2;
   }
   
-  .machine.left { left: 8%; }
-  .machine.right { right: 8%; }
-  
-  .panel {
-    width: 80%;
-    height: 30px;
-    background: #0f0;
-    margin: 10px auto;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #0f0;
-    animation: pulsePanel 2s infinite;
-  }
-  
-  .buttons {
+  #teste{
+    width: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+
   }
+  .machine.left {
+    left: 5%;
+    }
+  .machine.right { 
+    right: 12%; }
   
-  .button {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: red;
-    box-shadow: 0 0 5px red;
-  }
   
   .pipe {
     position: absolute;
@@ -170,8 +151,6 @@
       box-shadow: 0 0 30px white;
     }
   }
-  
- 
   .lightning {
     position: absolute;
     width: 300px;
