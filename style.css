@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    overflow: hidden;
+    font-family: sans-serif;
+    background: #000;
+  }
+  
+  .scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    animation: fadeOut 1s ease-in-out 13s forwards;
+    z-index: 1;
+  }
+  
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
+  .background {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to top, #000 40%, #333 100%);
+    background-image: url('https://www.transparenttextures.com/patterns/clouds.png');
+    background-repeat: repeat;
+    background-size: 800px 800px;
+    animation: mexernuvens 60s linear infinite;
+    opacity: 0.2;
+    z-index: 0;
+  }
+  
+  @keyframes mexernuvens {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  .frank-container {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
+    opacity: 0;
+    z-index: 5;
+    animation: frank 2s 2s forwards, mexer 0.15s 7s infinite;
+  }
+  
+  .frank-sprite {
+    width: 100%;
+    display: block;
+    filter: drop-shadow(0 0 10px limegreen);
+  }
+  
+  @keyframes frank {
+    0% { opacity: 0; transform: translateX(-50%) scale(0.95); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  }
+  
+  @keyframes mexer {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+  }
+  
+
+  .machine {
+    position: absolute;
+    width: 120px;
+    height: 180px;
+    background: linear-gradient(to bottom, #555, #222);
+    bottom: 10%;
+    z-index: 1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px #222, 0 0 20px #666;
+  }
+  
+  .machine.left { left: 8%; }
+  .machine.right { right: 8%; }
+  
+  .panel {
+    width: 80%;
+    height: 30px;
+    background: #0f0;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #0f0;
+    animation: pulsePanel 2s infinite;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    box-shadow: 0 0 5px red;
+  }
+  
+  .pipe {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 40px;
+    background: #888;
+    border-radius: 10px 10px 0 0;
+  }
+  
+ 
+  .wire {
+    position: absolute;
+    width: 15px;
+    height: 300px;
+    background: yellow;
+    animation: pulse 0.5s 7s infinite;
+    border-radius: 8px;
+    box-shadow: 0 0 15px yellow;
+    z-index: 0;
+  }
+  
+  .wire.left {
+    left: 13%;
+    bottom: 25%;
+    transform: rotate(-15deg) skewX(-10deg);
+    transform-origin: bottom left;
+    clip-path: polygon(0% 0%, 100% 10%, 100% 90%, 0% 100%);
+  }
+  
+  .wire.right {
+    right: 13%;
+    bottom: 25%;
+    transform: rotate(15deg) skewX(10deg);
+    transform-origin: bottom right;
+    clip-path: polygon(0% 10%, 100% 0%, 100% 100%, 0% 90%);
+  }
+  
+  .wire-connector {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: yellow;
+    border-radius: 50%;
+    z-index: 3;
+    animation: pulse 0.5s 7s infinite;
+    box-shadow: 0 0 20px yellow;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      background-color: yellow;
+      box-shadow: 0 0 15px yellow;
+    }
+    50% {
+      background-color: white;
+      box-shadow: 0 0 30px white;
+    }
+  }
+  
+ 
+  .lightning {
+    position: absolute;
+    width: 300px;
+    height: 8px;
+    background: white;
+    opacity: 0;
+    animation: lightning-blink 0.3s 7s infinite;
+    z-index: 4;
+    box-shadow: 0 0 15px white;
+  }
+  
+  .lightning.left {
+    left: 60%;
+    bottom: 52%;
+    transform: rotate(-15deg);
+  }
+  
+  .lightning.right {
+    right: 60%;
+    bottom: 52%;
+    transform: rotate(15deg);
+  }
+  
+  @keyframes lightning-blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+   
+.frank-faisca {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0;
+    animation: lightning-blink 0.3s infinite;
+    animation-delay: 7.5s; 
+  }
+  
+  .frank-faisca.left {
+    left: calc(50% - 85px);
+    bottom: 20%;
+  }
+  
+  .frank-faisca.right {
+    right: calc(50% - 85px);
+    bottom: 20%;
+  }
+  
+
+  .info-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 30px;
+    z-index: 0;
+    overflow-y: auto;
+    font-family: 'Segoe UI', sans-serif;
+    opacity: 0;
+    animation: showInfo 1s ease-in 14s forwards;
+  }
+  
+  @keyframes showInfo {
+    to {
+      opacity: 1;
+      z-index: 100;
+    }
+  }
+  
+  .info-block {
+    max-width: 800px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
+    border: 1px solid limegreen;
+  }
+  
+  .info-block h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: limegreen;
+  }
+  
+  .info-block p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+ 
+  .ifsp-logo {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    opacity: 0;
+    animation: fadeInLogo 5s ease-in 9s forwards;
+  }
+  
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(4, 40px);
+    gap: 8px;
+  }
+  
+  .square, .circle {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: appear 3s forwards;
+  }
+  
+  .square {
+    background: limegreen;
+    border-radius: 5px;
+  }
+  
+  .sumiu {
+    background-color: #000;
+  }
+  
+  .circle {
+    background: red;
+    border-radius: 50%;
+  }
+  
+  
+  .logo-grid div:nth-child(1) { animation-delay: 0.5s; }
+  .logo-grid div:nth-child(2) { animation-delay: 0.7s; }
+  .logo-grid div:nth-child(3) { animation-delay: 0.9s; }
+  .logo-grid div:nth-child(4) { animation-delay: 1.1s; }
+  .logo-grid div:nth-child(5) { animation-delay: 1.3s; }
+  .logo-grid div:nth-child(6) { animation-delay: 1.5s; }
+  .logo-grid div:nth-child(7) { animation-delay: 1.7s; }
+  .logo-grid div:nth-child(8) { animation-delay: 1.9s; }
+  .logo-grid div:nth-child(9) { animation-delay: 2.1s; }
+  .logo-grid div:nth-child(10) { animation-delay: 2.3s; }
+  .logo-grid div:nth-child(11) { animation-delay: 2.5s; }
+  
+  @keyframes appear {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+.scene {
+    animation: fadeOut 1s ease-in-out 7.5s forwards;
+  }
+  
+ 
+  .ifsp-logo-central {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    animation: zoomLogo 3s ease-in-out 8s forwards;
+    z-index: 200;
+  }
+  
+  @keyframes zoomLogo {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(2);
+    }
+  }
+  .logo-text-final {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 300;
+    animation: fadeInTextFinal 2s ease-in 11s forwards, fadeOutTextFinal 2s ease-in 12s forwards;
+    opacity: 0;
+  }
+  
+  .logo-text-final h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .logo-text-final h3 {
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+  }
+  
+  .logo-text-final h4 {
+    font-size: 18px;
+    font-weight: normal;
+    color: limegreen;
+  }
+  
+  @keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeInLogo {
+    to { opacity: 1; }
+  }
+  @keyframes fadeInTextFinal {
+    from { opacity: 0; transform: translate(-50%, -40%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+  @keyframes fadeOutTextFinal {
+    from { opacity: 1; transform: translate(-50%, -50%); }
+    to { opacity: 0; transform: translate(-50%, -60%); }
+  }
+  
